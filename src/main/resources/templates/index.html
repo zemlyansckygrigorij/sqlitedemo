@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Task</title>
+</head>
+<body>
+<h1>Скважины </h1>
+<table class="table table-striped table-responsive-md">
+    <thead>
+    <tr>
+        <th>Имя Скважины </th>
+        <th>Количество оборудования</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="well : ${wells}">
+        <!--td><p th:text="${cat.getName()}"></p></td>
+        <td><img th:src="${cat.getPath()}"   width="255" height="255" /></td>
+        <td><p th:text="${cat.getRating()}"></p></td-->
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
