@@ -15,11 +15,15 @@
     </thead>
     <tbody>
     <tr th:each="well : ${wells}">
-        <!--td><p th:text="${cat.getName()}"></p></td>
-        <td><img th:src="${cat.getPath()}"   width="255" height="255" /></td>
-        <td><p th:text="${cat.getRating()}"></p></td-->
+        <td><p th:text="${well.getName()}"></p></td>
+
+        <td><p th:text="${well.getEquipments().size()}"></p></td>
     </tr>
     </tbody>
 </table>
+<form th:action="@{/wells/create}"  >
+    <input type="submit" value="update" />
+</form>
+
 </body>
 </html>
