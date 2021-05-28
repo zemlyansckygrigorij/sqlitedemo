@@ -50,7 +50,6 @@ public class SQLDialect extends Dialect {
     }
  
     public String getIdentityColumnString() {
-        // return "integer primary key autoincrement";
         return "integer";
     }
  
