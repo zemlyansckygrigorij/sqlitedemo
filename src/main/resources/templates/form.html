@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Well</title>
+</head>
+<body>
+<div>
+
+  <!--/*@thymesVar id="message" type="com.example.sqlitedemo.entity.Message"*/-->
+  <form th:action="@{/wells}" th:object="${message}" method="post">
+    <input type="hidden" name="${_csrf.parameterName}"
+           value="${_csrf.token}" />
+    <table>
+      <tr>
+        <td>Name Well :</td>
+        <td>
+          <input type="text" th:field="*{name}" />
+        </td>
+      </tr>
+      <tr>
+        <td>Number:</td>
+        <td>
+          <input type="text" th:field="*{number}"/>
+        </td>
+      </tr>
+
+      <tr>
+        <td><input name="submit" type="submit" value="submit" /></td>
+      </tr>
+    </table>
+  </form>
+</div>
+</body>
+</html>
