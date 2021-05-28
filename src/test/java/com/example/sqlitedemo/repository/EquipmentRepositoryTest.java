@@ -15,8 +15,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class EquipmentRepositoryTest {
-    @Autowired
-    private TestEntityManager entityManager;
 
     @Autowired
     private EquipmentRepository repository;
