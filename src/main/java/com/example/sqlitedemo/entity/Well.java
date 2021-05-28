@@ -11,11 +11,20 @@ public class Well {
     private Integer id;
     @Column(name="name",nullable = false, unique=true)
     private String name;
-    @OneToMany(
+    @OneToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private List<Equipment> comments = new ArrayList<>();
+    private List<Equipment> equipments = new ArrayList<>();
+
+    public List<Equipment> getEquipments() {
+        return equipments;
+    }
+
+    public void setEquipments(List<Equipment> equipments) {
+        this.equipments = equipments;
+    }
+
     public Well() {
     }
 
