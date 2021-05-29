@@ -3,27 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <title>Test Task</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+            integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+            crossorigin="anonymous"></script>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
 </head>
+
 <body>
-<h1>Скважины </h1>
-<table class="table table-striped table-responsive-md">
-    <thead>
-    <tr>
-        <th>Имя Скважины </th>
-        <th>Количество оборудования</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="well : ${wells}">
-        <td><p th:text="${well.getName()}"></p></td>
+    <h1>Скважины </h1>
+    <form th:action="@{/wells}" method="get" >
 
-        <td><p th:text="${well.getEquipments().size()}"></p></td>
-    </tr>
-    </tbody>
-</table>
-<form th:action="@{/wells/create}"  >
-    <input type="submit" value="update" />
-</form>
+        <!--/*@thymesVar id="list" type="java.lang.String"*/-->
+        <input id = "list" type="text" th:field="${list}" />
+        <input id="select" value="выбрать"  type="button">
+    </form>
+    <table id = "table" class="table table-striped table-responsive-md">
+        <thead>
+            <tr>
+                <th>Имя Скважины </th>
+                <th>Количество оборудования</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="well : ${wells}">
+                <td><p th:text="${well.getName()}"></p></td>
+                <td><p th:text="${well.getEquipments().size()}"></p></td>
+            </tr>
+        </tbody>
+    </table>
+    <form th:action="@{/wells/create}"  >
+        <input type="submit" value="update" />
+    </form>
+    <script>
 
+        $("#select").click(function(){
+            let list = $('#list').val().trim();
+            if(list==""){//if input is empty all row table show
+                $("tr").show();
+                return;
+            }
+            let result = list.split(' ').join(',').split(',');// get values from input
+            let oTable = $('#table');
+
+            $("table > tbody > tr").each(function () {
+                if($.inArray($(this).find('td').eq(0).text() , result)==-1){
+                    $(this).hide()
+                }
+            });
+         });
+    </script>
 </body>
 </html>
