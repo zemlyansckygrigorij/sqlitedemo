@@ -25,7 +25,8 @@ public class WellController {
 
     @GetMapping("/wells")
     public  String  getWells(Model model) {
-        model.addAttribute("wells", wellRepository.findAll());
+        model.addAttribute("list", new String());
+            model.addAttribute("wells", wellRepository.findAll());
         return "index";
     }
     @GetMapping("/wells/create")
