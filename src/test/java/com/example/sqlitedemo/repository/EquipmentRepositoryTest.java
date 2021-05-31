@@ -21,6 +21,6 @@ public class EquipmentRepositoryTest {
     @Test
     public void test() {
         long countFirst = repository.count();
-        assertEquals(0, countFirst);
+        assertEquals(3, countFirst);
     }
 }
