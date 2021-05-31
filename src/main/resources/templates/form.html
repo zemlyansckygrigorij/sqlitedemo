@@ -2,9 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Well</title>
+    <title>Update Wells</title>
 </head>
 <body>
+<a th:href="@{/wells}">Скважины </a><br/>
+<a th:href="@{/report}">Отчет</a><br/>
+<a th:href="@{/wells/create}">Создать/Изменить</a><br/>
 <div>
 
   <!--/*@thymesVar id="message" type="com.example.sqlitedemo.entity.Message"*/-->
@@ -22,6 +25,13 @@
         <td>Number:</td>
         <td>
           <input type="text" th:field="*{number}"/>
+        </td>
+      </tr>
+
+      <tr>
+        <td>create report:</td>
+        <td>
+          <input type="checkbox"   th:checked="false"/>
         </td>
       </tr>
 
