@@ -1,6 +1,5 @@
 package com.example.sqlitedemo.repository;
 
-
 import com.example.sqlitedemo.entity.Well;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
