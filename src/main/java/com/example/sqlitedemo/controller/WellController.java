@@ -6,7 +6,9 @@ import com.example.sqlitedemo.entity.Well;
 import com.example.sqlitedemo.repository.EquipmentRepository;
 import com.example.sqlitedemo.repository.WellRepository;
 import com.example.sqlitedemo.service.RandomStringGenerator;
+import com.example.sqlitedemo.service.WellsToXml;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,15 +16,23 @@ import java.util.Optional;
 
 @Controller
 public class WellController {
+    //path for create report
+    @Value("${spring.dir}")
+    private String parth;
+
+    @Autowired
+    private WellsToXml wellsToXml ;
+
     @Autowired
     private final WellRepository wellRepository;
+
     @Autowired
     private final EquipmentRepository equipmentRepository;
     public WellController(WellRepository wellRepository, EquipmentRepository equipmentRepository) {
         this.wellRepository = wellRepository;
         this.equipmentRepository = equipmentRepository;
     }
-
+//page wells
     @GetMapping("/wells")
     public  String  getWells(Model model) {
         model.addAttribute("list", new String());
@@ -57,5 +67,16 @@ public class WellController {
         }
         wellRepository.save(well);
         return "redirect:/wells";
+    }
+    @GetMapping("/report")
+    public  String  getReport(Model model) {
+        model.addAttribute("wells", wellRepository.findAll());
+        return "report";
+    }
+    @RequestMapping(value="/report", method= RequestMethod.POST)
+    public String saveReport(Model model) {
+        model.addAttribute("wells", wellRepository.findAll());
+        wellsToXml.convert(parth);
+        return "/report";
     }
 }
