@@ -21,7 +21,18 @@ public class WebLayerTest {
     private MockMvc mockMvc;
 
     @Test
-    public void shouldReturnDefaultMessage() throws Exception {
+    public void testPageWells() throws Exception {
         this.mockMvc.perform(get("/wells")).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString("Скважины")));
-    }}
+    }
+    @Test
+    public void testPageUpdate() throws Exception {
+        this.mockMvc.perform(get("/wells/create")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string(containsString("Name Well")));
+    }
+    @Test
+    public void testPageReport() throws Exception {
+        this.mockMvc.perform(get("/report")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string(containsString("Отчет")));
+    }
+}
